@@ -98,10 +98,10 @@ def receipt_image(text, w, size=22, font=None, margin=8):
     probe = ImageDraw.Draw(Image.new("L", (1, 1)))
     lines = []
     for para in text.split("\n"):
-        line = ""
+        line = None                                 # keeps leading spaces
         for word in para.split(" "):
-            t = word if not line else line + " " + word
-            if probe.textlength(t, font=f) <= w - 2 * margin or not line:
+            t = word if line is None else line + " " + word
+            if line is None or probe.textlength(t, font=f) <= w - 2 * margin:
                 line = t
             else:
                 lines.append(line)
@@ -308,22 +308,34 @@ CMD_PRINT = b"\x1b\x69"            # print buffer, advance to next label
 CMD_RESET = b"\x1b\x41"
 
 
+CHUNK_ROWS = 4000                  # continuous jobs are split every 500 mm
+
+
 def encode_job(img, width_mm, height_mm=None, paper="gap", density=6,
                offset=(0, 0), dither=False):
     """Full job for one label, as sent by QLabel (LPBTService.printImage).
-    height_mm None -> derived from the image height (continuous paper)."""
+    height_mm None -> derived from the image height (continuous paper).
+    The label header holds the row count in 16 bits, so long continuous
+    images are sent as several labels of CHUNK_ROWS rows each."""
     w = min(img.width, HEAD_DOTS)
     if img.width > w:
         img = img.crop((0, 0, w, img.height))
     rows = to_rows(img, dither)
     if height_mm is None:
-        height_mm = len(rows) / DOTS_PER_MM
+        chunks = [rows[i:i + CHUNK_ROWS]
+                  for i in range(0, len(rows), CHUNK_ROWS)] or [rows]
+    elif len(rows) < 0xFFFF and height_mm * 10 <= 0xFFFF:
+        chunks = [rows]
+    else:
+        raise ValueError("label too long: %d rows" % len(rows))
     out = bytearray()
     out += cmd_density(density) + cmd_offset(*offset) + cmd_paper(paper)
-    out += CMD_ANDROID + cmd_label(len(rows), width_mm, height_mm)
-    for r in rows:
-        out += cmd_row(r)
-    out += CMD_FEED0 + CMD_PRINT
+    for part in chunks:
+        h = height_mm if height_mm is not None else len(part) / DOTS_PER_MM
+        out += CMD_ANDROID + cmd_label(len(part), width_mm, h)
+        for r in part:
+            out += cmd_row(r)
+        out += CMD_FEED0 + CMD_PRINT
     return bytes(out)
 
 

@@ -3,6 +3,7 @@
 without CUPS. Uses rmicronlib.py.
 
   e210print.py label.png
+  e210print.py notes.txt --size receipt57
   e210print.py --text "Hello\\nWorld" --size 40x30
   e210print.py --barcode "ABC-12345" --size 50x30
   e210print.py --qrcode "https://example.org"
@@ -18,9 +19,36 @@ import sys
 import rmicronlib as rm
 
 
+def read_text(path):
+    """Contents of a plain text file, or None if it is binary."""
+    with open(path, "rb") as f:
+        data = f.read()
+    if b"\0" in data:
+        return None
+    for enc in ("utf-8-sig", "cp1252"):
+        try:
+            text = data.decode(enc)
+        except UnicodeDecodeError:
+            continue
+        text = text.replace("\r\n", "\n").replace("\r", "\n")
+        if all(c.isprintable() or c in "\n\t\f" for c in text):
+            return text.expandtabs(4).replace("\f", "\n")
+    return None
+
+
+def is_image(path):
+    try:
+        with rm.Image.open(path):
+            return True
+    except rm.Image.UnidentifiedImageError:
+        return False
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    p.add_argument("image", nargs="?", help="image file (PNG, JPEG, ...)")
+    p.add_argument("file", nargs="?",
+                   help="image file (PNG, JPEG, ...) or plain text file, "
+                        "printed like --receipt")
     src = p.add_argument_group("content (pick one)")
     src.add_argument("--text", help="centred text; \\n starts a new line")
     src.add_argument("--receipt", help="word-wrapped text for continuous "
@@ -92,16 +120,23 @@ def main():
                                    a.font_size, a.font)
             if h is not None:                       # fixed label: crop/pad
                 img = img.crop((0, 0, w, h))
+        elif a.file and not is_image(a.file):
+            text = read_text(a.file)
+            if text is None:
+                sys.exit("%s: neither an image nor a text file" % a.file)
+            img = rm.receipt_image(text.rstrip("\n"), w, a.font_size, a.font)
+            if h is not None:
+                img = img.crop((0, 0, w, h))
         elif a.barcode is not None:
             img = rm.barcode_image(a.barcode, w, h, a.font)
         elif a.qrcode is not None:
             img = rm.qr_image(a.qrcode, w, h)
-        elif a.image:
-            img = rm.file_image(a.image, w, h, a.rotate)
+        elif a.file:
+            img = rm.file_image(a.file, w, h, a.rotate)
         else:
             p.error("give an image file, --text, --receipt, --barcode, "
                     "--qrcode, --test or --ruler")
-    except (ValueError, RuntimeError) as e:
+    except (ValueError, RuntimeError, OSError) as e:
         sys.exit(str(e))
     if a.preview:
         img.convert("1", dither=rm.Image.FLOYDSTEINBERG if a.dither
@@ -113,7 +148,7 @@ def main():
                                dither=a.dither)
             if a.feed:
                 pr.feed(rm.mm(a.feed))
-    except rm.PrinterError as e:
+    except (rm.PrinterError, ValueError) as e:
         sys.exit("printer: %s" % e)
     if a.dev != "-":
         print("sent %d bytes (%dx%d dots, %s) " % (n, img.width, img.height,
