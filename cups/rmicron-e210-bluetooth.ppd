@@ -1,0 +1,178 @@
+*PPD-Adobe: "4.3"
+*% rmicro E210 label printer (YC3121), Bluetooth. Filter: rastertormicron.
+*%% Generated for the e210-printer project; see doc/ and c/.
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageVersion: English
+*LanguageEncoding: ISOLatin1
+*PCFileName: "RME210B.PPD"
+*Manufacturer: "rmicro"
+*Product: "(E210)"
+*ModelName: "rmicro E210"
+*ShortNickName: "rmicro E210 Bluetooth"
+*NickName: "rmicro E210 label printer, Bluetooth"
+*PSVersion: "(3010.000) 0"
+*LanguageLevel: "3"
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*FileSystem: False
+*Throughput: "1"
+*LandscapeOrientation: Plus90
+*TTRasterizer: Type42
+*cupsVersion: 2.4
+*cupsModelNumber: 0
+*cupsManualCopies: True
+*cupsFilter: "application/vnd.cups-raster 0 rastertormicron"
+*cupsLanguages: "en"
+
+*OpenUI *Resolution/Resolution: PickOne
+*OrderDependency: 10 AnySetup *Resolution
+*DefaultResolution: 203dpi
+*Resolution 203dpi/203 dpi: "<</HWResolution[203 203]>>setpagedevice"
+*CloseUI: *Resolution
+
+*OpenUI *ColorModel/Color Mode: PickOne
+*OrderDependency: 10 AnySetup *ColorModel
+*DefaultColorModel: Black
+*ColorModel Black/Black and White: "<</cupsColorOrder 0/cupsColorSpace 3/cupsBitsPerColor 1>>setpagedevice"
+*CloseUI: *ColorModel
+
+*OpenUI *PageSize/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: w85h57
+*PageSize w57h28/Label 20 x 10 mm: "<</PageSize[56.69 28.35]/ImagingBBox null>>setpagedevice"
+*PageSize w71h43/Label 25 x 15 mm: "<</PageSize[70.87 42.52]/ImagingBBox null>>setpagedevice"
+*PageSize w85h43/Label 30 x 15 mm: "<</PageSize[85.04 42.52]/ImagingBBox null>>setpagedevice"
+*PageSize w85h57/Label 30 x 20 mm: "<</PageSize[85.04 56.69]/ImagingBBox null>>setpagedevice"
+*PageSize w85h113/Label 30 x 40 mm: "<</PageSize[85.04 113.39]/ImagingBBox null>>setpagedevice"
+*PageSize w113h57/Label 40 x 20 mm: "<</PageSize[113.39 56.69]/ImagingBBox null>>setpagedevice"
+*PageSize w113h85/Label 40 x 30 mm: "<</PageSize[113.39 85.04]/ImagingBBox null>>setpagedevice"
+*PageSize w113h113/Label 40 x 40 mm: "<</PageSize[113.39 113.39]/ImagingBBox null>>setpagedevice"
+*PageSize w113h170/Label 40 x 60 mm: "<</PageSize[113.39 170.08]/ImagingBBox null>>setpagedevice"
+*PageSize w136h85/Label 48 x 30 mm: "<</PageSize[136.06 85.04]/ImagingBBox null>>setpagedevice"
+*PageSize w142h57/Label 50 x 20 mm: "<</PageSize[141.73 56.69]/ImagingBBox null>>setpagedevice"
+*PageSize w142h71/Label 50 x 25 mm: "<</PageSize[141.73 70.87]/ImagingBBox null>>setpagedevice"
+*PageSize w142h85/Label 50 x 30 mm: "<</PageSize[141.73 85.04]/ImagingBBox null>>setpagedevice"
+*PageSize w142h113/Label 50 x 40 mm: "<</PageSize[141.73 113.39]/ImagingBBox null>>setpagedevice"
+*PageSize w142h142/Label 50 x 50 mm: "<</PageSize[141.73 141.73]/ImagingBBox null>>setpagedevice"
+*PageSize w142h227/Label 50 x 80 mm: "<</PageSize[141.73 226.77]/ImagingBBox null>>setpagedevice"
+*PageSize w136h283/Receipt 48 x 100 mm: "<</PageSize[136.06 283.46]/ImagingBBox null>>setpagedevice"
+*PageSize w136h567/Receipt 48 x 200 mm: "<</PageSize[136.06 566.93]/ImagingBBox null>>setpagedevice"
+*PageSize w136h850/Receipt 48 x 300 mm: "<</PageSize[136.06 850.39]/ImagingBBox null>>setpagedevice"
+*PageSize w136h1417/Receipt 48 x 500 mm: "<</PageSize[136.06 1417.32]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: w85h57
+*PageRegion w57h28/Label 20 x 10 mm: "<</PageSize[56.69 28.35]/ImagingBBox null>>setpagedevice"
+*PageRegion w71h43/Label 25 x 15 mm: "<</PageSize[70.87 42.52]/ImagingBBox null>>setpagedevice"
+*PageRegion w85h43/Label 30 x 15 mm: "<</PageSize[85.04 42.52]/ImagingBBox null>>setpagedevice"
+*PageRegion w85h57/Label 30 x 20 mm: "<</PageSize[85.04 56.69]/ImagingBBox null>>setpagedevice"
+*PageRegion w85h113/Label 30 x 40 mm: "<</PageSize[85.04 113.39]/ImagingBBox null>>setpagedevice"
+*PageRegion w113h57/Label 40 x 20 mm: "<</PageSize[113.39 56.69]/ImagingBBox null>>setpagedevice"
+*PageRegion w113h85/Label 40 x 30 mm: "<</PageSize[113.39 85.04]/ImagingBBox null>>setpagedevice"
+*PageRegion w113h113/Label 40 x 40 mm: "<</PageSize[113.39 113.39]/ImagingBBox null>>setpagedevice"
+*PageRegion w113h170/Label 40 x 60 mm: "<</PageSize[113.39 170.08]/ImagingBBox null>>setpagedevice"
+*PageRegion w136h85/Label 48 x 30 mm: "<</PageSize[136.06 85.04]/ImagingBBox null>>setpagedevice"
+*PageRegion w142h57/Label 50 x 20 mm: "<</PageSize[141.73 56.69]/ImagingBBox null>>setpagedevice"
+*PageRegion w142h71/Label 50 x 25 mm: "<</PageSize[141.73 70.87]/ImagingBBox null>>setpagedevice"
+*PageRegion w142h85/Label 50 x 30 mm: "<</PageSize[141.73 85.04]/ImagingBBox null>>setpagedevice"
+*PageRegion w142h113/Label 50 x 40 mm: "<</PageSize[141.73 113.39]/ImagingBBox null>>setpagedevice"
+*PageRegion w142h142/Label 50 x 50 mm: "<</PageSize[141.73 141.73]/ImagingBBox null>>setpagedevice"
+*PageRegion w142h227/Label 50 x 80 mm: "<</PageSize[141.73 226.77]/ImagingBBox null>>setpagedevice"
+*PageRegion w136h283/Receipt 48 x 100 mm: "<</PageSize[136.06 283.46]/ImagingBBox null>>setpagedevice"
+*PageRegion w136h567/Receipt 48 x 200 mm: "<</PageSize[136.06 566.93]/ImagingBBox null>>setpagedevice"
+*PageRegion w136h850/Receipt 48 x 300 mm: "<</PageSize[136.06 850.39]/ImagingBBox null>>setpagedevice"
+*PageRegion w136h1417/Receipt 48 x 500 mm: "<</PageSize[136.06 1417.32]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: w85h57
+*ImageableArea w57h28/Label 20 x 10 mm: "0 0 56.69 28.35"
+*ImageableArea w71h43/Label 25 x 15 mm: "0 0 70.87 42.52"
+*ImageableArea w85h43/Label 30 x 15 mm: "0 0 85.04 42.52"
+*ImageableArea w85h57/Label 30 x 20 mm: "0 0 85.04 56.69"
+*ImageableArea w85h113/Label 30 x 40 mm: "0 0 85.04 113.39"
+*ImageableArea w113h57/Label 40 x 20 mm: "0 0 113.39 56.69"
+*ImageableArea w113h85/Label 40 x 30 mm: "0 0 113.39 85.04"
+*ImageableArea w113h113/Label 40 x 40 mm: "0 0 113.39 113.39"
+*ImageableArea w113h170/Label 40 x 60 mm: "0 0 113.39 170.08"
+*ImageableArea w136h85/Label 48 x 30 mm: "0 0 136.06 85.04"
+*ImageableArea w142h57/Label 50 x 20 mm: "0 0 136.06 56.69"
+*ImageableArea w142h71/Label 50 x 25 mm: "0 0 136.06 70.87"
+*ImageableArea w142h85/Label 50 x 30 mm: "0 0 136.06 85.04"
+*ImageableArea w142h113/Label 50 x 40 mm: "0 0 136.06 113.39"
+*ImageableArea w142h142/Label 50 x 50 mm: "0 0 136.06 141.73"
+*ImageableArea w142h227/Label 50 x 80 mm: "0 0 136.06 226.77"
+*ImageableArea w136h283/Receipt 48 x 100 mm: "0 0 136.06 283.46"
+*ImageableArea w136h567/Receipt 48 x 200 mm: "0 0 136.06 566.93"
+*ImageableArea w136h850/Receipt 48 x 300 mm: "0 0 136.06 850.39"
+*ImageableArea w136h1417/Receipt 48 x 500 mm: "0 0 136.06 1417.32"
+
+*DefaultPaperDimension: w85h57
+*PaperDimension w57h28/Label 20 x 10 mm: "56.69 28.35"
+*PaperDimension w71h43/Label 25 x 15 mm: "70.87 42.52"
+*PaperDimension w85h43/Label 30 x 15 mm: "85.04 42.52"
+*PaperDimension w85h57/Label 30 x 20 mm: "85.04 56.69"
+*PaperDimension w85h113/Label 30 x 40 mm: "85.04 113.39"
+*PaperDimension w113h57/Label 40 x 20 mm: "113.39 56.69"
+*PaperDimension w113h85/Label 40 x 30 mm: "113.39 85.04"
+*PaperDimension w113h113/Label 40 x 40 mm: "113.39 113.39"
+*PaperDimension w113h170/Label 40 x 60 mm: "113.39 170.08"
+*PaperDimension w136h85/Label 48 x 30 mm: "136.06 85.04"
+*PaperDimension w142h57/Label 50 x 20 mm: "141.73 56.69"
+*PaperDimension w142h71/Label 50 x 25 mm: "141.73 70.87"
+*PaperDimension w142h85/Label 50 x 30 mm: "141.73 85.04"
+*PaperDimension w142h113/Label 50 x 40 mm: "141.73 113.39"
+*PaperDimension w142h142/Label 50 x 50 mm: "141.73 141.73"
+*PaperDimension w142h227/Label 50 x 80 mm: "141.73 226.77"
+*PaperDimension w136h283/Receipt 48 x 100 mm: "136.06 283.46"
+*PaperDimension w136h567/Receipt 48 x 200 mm: "136.06 566.93"
+*PaperDimension w136h850/Receipt 48 x 300 mm: "136.06 850.39"
+*PaperDimension w136h1417/Receipt 48 x 500 mm: "136.06 1417.32"
+
+*HWMargins: 0 0 0 0
+*VariablePaperSize: True
+*MaxMediaWidth: "170.08"
+*MaxMediaHeight: "2834.65"
+*NonUIOrderDependency: 100 AnySetup *CustomPageSize True
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width: 1 points 28.35 170.08
+*ParamCustomPageSize Height: 2 points 14.17 2834.65
+*ParamCustomPageSize WidthOffset: 3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation: 5 int 0 0
+
+*OpenUI *MediaType/Media Type: PickOne
+*OrderDependency: 10 AnySetup *MediaType
+*DefaultMediaType: Gap
+*MediaType Gap/Labels with gap: "<</MediaType(Gap)/cupsMediaType 2>>setpagedevice"
+*MediaType BlackMark/Labels with black mark: "<</MediaType(BlackMark)/cupsMediaType 3>>setpagedevice"
+*MediaType Holes/Labels with holes: "<</MediaType(Holes)/cupsMediaType 1>>setpagedevice"
+*MediaType Continuous/Continuous (receipt roll): "<</MediaType(Continuous)/cupsMediaType 0>>setpagedevice"
+*CloseUI: *MediaType
+
+*OpenUI *Darkness/Print Darkness: PickOne
+*OrderDependency: 10 AnySetup *Darkness
+*DefaultDarkness: 6
+*Darkness 1/1: "<</cupsCompression 1>>setpagedevice"
+*Darkness 2/2: "<</cupsCompression 2>>setpagedevice"
+*Darkness 3/3: "<</cupsCompression 3>>setpagedevice"
+*Darkness 4/4: "<</cupsCompression 4>>setpagedevice"
+*Darkness 5/5: "<</cupsCompression 5>>setpagedevice"
+*Darkness 6/6 (default): "<</cupsCompression 6>>setpagedevice"
+*Darkness 7/7: "<</cupsCompression 7>>setpagedevice"
+*Darkness 8/8: "<</cupsCompression 8>>setpagedevice"
+*Darkness 9/9: "<</cupsCompression 9>>setpagedevice"
+*Darkness 10/10: "<</cupsCompression 10>>setpagedevice"
+*Darkness 11/11: "<</cupsCompression 11>>setpagedevice"
+*Darkness 12/12: "<</cupsCompression 12>>setpagedevice"
+*Darkness 13/13: "<</cupsCompression 13>>setpagedevice"
+*Darkness 14/14: "<</cupsCompression 14>>setpagedevice"
+*Darkness 15/15: "<</cupsCompression 15>>setpagedevice"
+*Darkness 16/16: "<</cupsCompression 16>>setpagedevice"
+*CloseUI: *Darkness
+
+*DefaultFont: Courier
+*Font Courier: Standard "(002.004S)" Standard ROM
+*% End of PPD
